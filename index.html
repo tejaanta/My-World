@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My World</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #10182c;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 8px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to My World</h1>
+  <p>Enter another universe.</p>
+
+  <audio id="music" loop>
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="playBtn">▶ Play Music</button>
+
+  <script>
+    const music = document.getElementById("music");
+    const btn = document.getElementById("playBtn");
+
+    btn.addEventListener("click", async () => {
+      if (music.paused) {
+        try {
+          await music.play();
+          btn.textContent = "❚❚ Pause Music";
+        } catch (error) {
+          btn.textContent = "Audio failed. Check the MP3 file.";
+        }
+      } else {
+        music.pause();
+        btn.textContent = "▶ Play Music";
+      }
+    });
+
+    music.addEventListener("ended", () => {
+      btn.textContent = "▶ Play Music";
+    });
+  </script>
+</body>
+</html>
